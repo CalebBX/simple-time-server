@@ -20,6 +20,10 @@ var TimeSchema = new mongoose.Schema({
     minutes: {
         type: Number,
         required: false
+    },
+    active: {
+        type: Boolean,
+        required: true
     }
 });
 
