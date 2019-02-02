@@ -8,15 +8,16 @@ const { mongoose } = require('./db/mongoose.js');
 
 const usersRoutes = require('./routes/users');
 const todosRoutes = require('./routes/todos');
+const slotsRoutes = require('./routes/slots');
 const timeRoutes = require('./routes/time');
 
-var app = express();
+let app = express();
 const port = process.env.PORT;
 
 app.use(bodyParser.json());
 //app.use(cors());
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header(
         'Access-Control-Allow-Headers',
@@ -30,9 +31,10 @@ app.use(function(req, res, next) {
 
 app.use('/users', usersRoutes);
 app.use('/todos', todosRoutes);
+app.use('/slots', slotsRoutes);
 app.use('/time', timeRoutes);
 
-app.listen(port, function() {
+app.listen(port, function () {
     console.log(`Started at port: ${port}`);
 });
 

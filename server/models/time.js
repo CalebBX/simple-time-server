@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var TimeSchema = new mongoose.Schema({
+let TimeSchema = new mongoose.Schema({
     clockIn: {
         type: Date,
         required: false
@@ -27,5 +27,5 @@ var TimeSchema = new mongoose.Schema({
     }
 });
 
-var Time = mongoose.model('Time', TimeSchema);
+let Time = mongoose.model('Time', TimeSchema);
 module.exports = { Time };

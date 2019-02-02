@@ -1,13 +1,13 @@
-var _ = require('lodash');
-var express = require('express');
-var router = express.Router();
+let _ = require('lodash');
+let express = require('express');
+let router = express.Router();
 const { authenticate } = require('../middleware/authenticate.js');
 const { Todo } = require('../models/todo');
 const { ObjectID } = require('mongodb');
 const { mongoose } = require('../db/mongoose.js');
 
 router.post('/', authenticate, function(req, res) {
-    var todo = new Todo({
+    let todo = new Todo({
         text: req.body.text,
         _creator: req.user._id
     });
@@ -33,7 +33,7 @@ router.get('/', authenticate, function(req, res) {
 });
 
 router.get('/:id', authenticate, function(req, res) {
-    var id = req.params.id;
+    let id = req.params.id;
     if (!ObjectID.isValid(id)) {
         res.status(404).send();
     }
@@ -53,7 +53,7 @@ router.get('/:id', authenticate, function(req, res) {
 });
 
 router.delete('/:id', authenticate, function(req, res) {
-    var id = req.params.id;
+    let id = req.params.id;
     if (!ObjectID.isValid(id)) {
         res.status(404).send;
     }
@@ -73,8 +73,8 @@ router.delete('/:id', authenticate, function(req, res) {
 });
 
 router.patch('/:id', authenticate, function(req, res) {
-    var id = req.params.id;
-    var body = _.pick(req.body, ['text', 'completed']);
+    let id = req.params.id;
+    let body = _.pick(req.body, ['text', 'completed']);
     if (!ObjectID.isValid(id)) {
         res.status(404).send;
     }

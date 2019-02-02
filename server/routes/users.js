@@ -1,13 +1,13 @@
-var _ = require('lodash');
-var express = require('express');
-var router = express.Router();
+let _ = require('lodash');
+let express = require('express');
+let router = express.Router();
 const { authenticate } = require('../middleware/authenticate.js');
 const { User } = require('../models/user');
 const { mongoose } = require('../db/mongoose.js');
 
 router.post('/', function(req, res) {
-    var body = _.pick(req.body, ['email', 'password', 'nameFirst', 'nameLast']);
-    var user = new User(body);
+    let body = _.pick(req.body, ['email', 'password', 'nameFirst', 'nameLast']);
+    let user = new User(body);
     user.save()
         .then(function(e) {
             return user.generateAuthToken();
@@ -25,7 +25,7 @@ router.get('/', authenticate, function(req, res) {
     });
 });
 router.get('/:id', function(req, res) {
-    var id = req.params.id;
+    let id = req.params.id;
     User.findById(id)
         .then(user => {
             res.send(user);
@@ -35,8 +35,8 @@ router.get('/:id', function(req, res) {
         });
 });
 router.patch('/:id', function(req, res) {
-    var body = _.pick(req.body, ['email', 'nameFirst', 'nameLast']);
-    var id = req.params.id;
+    let body = _.pick(req.body, ['email', 'nameFirst', 'nameLast']);
+    let id = req.params.id;
     User.findByIdAndUpdate(id, body)
         .then(user => {
             res.send(user);
@@ -51,7 +51,7 @@ router.get('/me', authenticate, function(req, res) {
 });
 
 router.post('/login', function(req, res) {
-    var body = _.pick(req.body, ['email', 'password']);
+    let body = _.pick(req.body, ['email', 'password']);
     console.log(body);
     User.findByCredentials(body.email, body.password)
         .then(function(user) {
