@@ -2,4 +2,4 @@
 
 Back end server for simple time app.
 
-Uses MongoDB
+Uses MongoDB/ExpressJS
